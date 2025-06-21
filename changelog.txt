@@ -1,4 +1,4 @@
-Chromium Port v0.0.1 (2024)
+v0.0.1 (21/06/2025)
 * Unofficial alpha port to Chromium-based browsers (Chrome, Edge, Brave, etc.)
 * Removed Firefox-specific build scripts and files
 * Removed sidebar functionality (not supported in Chrome extensions)
