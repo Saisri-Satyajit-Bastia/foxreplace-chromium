@@ -1,38 +1,25 @@
-# Build artifacts
 foxreplace.xpi
 *.zip
 *.crx
 *.pem
-
-# Development files
 *.md.backup
 *.tmp
 *.temp
 .DS_Store
 Thumbs.db
-
-# IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-
-# Git rewrite artifacts (temporary)
 .git-rewrite/
-
-# Node modules (if you add npm later)
 node_modules/
 package-lock.json
 yarn.lock
-
-# Logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Environment files
 .env
 .env.local
 .env.development.local
