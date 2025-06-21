@@ -1,0 +1,4 @@
+firefox.xpi
+*.tmp
+*.temp
+.vscode/
