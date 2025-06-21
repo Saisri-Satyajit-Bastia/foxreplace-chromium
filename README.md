@@ -38,7 +38,7 @@ FoxReplace allows you to replace text on web pages using substitution rules. You
 
 - This is an alpha version with likely bugs
 - Some features may not work as expected
-- The sidebar functionality has been replaced with opening in a new tab
+- Sidebar functionality removed (Chrome extensions don't support sidebars like Firefox)
 - Import/export functionality may be unstable
 
 ## Credits

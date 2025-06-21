@@ -1,3 +1,12 @@
+Chromium Port v0.0.1 (2024)
+* Unofficial alpha port to Chromium-based browsers (Chrome, Edge, Brave, etc.)
+* Removed Firefox-specific build scripts and files
+* Removed sidebar functionality (not supported in Chrome extensions)
+* Converted manifest to Manifest V3 format
+* Adapted background scripts to service worker architecture
+* Modified content scripts for Chrome extension compatibility
+* WARNING: Alpha version - likely unstable and incomplete
+
 v2.6.2 (2024-01-03)
 * Fixed bug related to unrecognized parameters of the substitution function (#362).
 * Fixed bug when replacing whole words with a function.
