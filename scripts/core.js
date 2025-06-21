@@ -116,23 +116,29 @@ const Substitution = (() => {
      * @param string {string} - input string to be replaced
      */
     #createOutputFunction(string) {
-      if (this.inputType === this.INPUT_REG_EXP) {
-        const matchesInString = this.regExp.exec(string);
+      try {
+        if (this.inputType === this.INPUT_REG_EXP) {
+          const matchesInString = this.regExp.exec(string);
 
-        if (!matchesInString) return; // no problem if it is not created yet because it won't match either in the actual replace stage
+          if (!matchesInString) return; // no problem if it is not created yet because it won't match either in the actual replace stage
 
-        const numCaptureGroups = matchesInString.length - 1;  // -1 because the first item is the full matched text
-        const captureGroupArgs = Array.from({ length: numCaptureGroups }, (e, i) => `p${i+1}`);
+          const numCaptureGroups = matchesInString.length - 1;  // -1 because the first item is the full matched text
+          const captureGroupArgs = Array.from({ length: numCaptureGroups }, (e, i) => `p${i+1}`);
 
-        // MDN rates Function as more secure than eval.
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#Do_not_ever_use_eval!
-        // decision to put user-input as the `return` of the function because:
-        //   1. assumption: most users will create simple one-line functions
-        //   2. users can still write complex input via `(() => { /* arbitrary code; return $result */ })()`
-        this.#outputFunction = Function('match', ...captureGroupArgs, 'offset', 'string', 'groups', `return ${this.output};`);
-      }
-      else {
-        this.#outputFunction = Function('match', 'offset', 'string', `return ${this.output};`);
+          // MDN rates Function as more secure than eval.
+          // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#Do_not_ever_use_eval!
+          // decision to put user-input as the `return` of the function because:
+          //   1. assumption: most users will create simple one-line functions
+          //   2. users can still write complex input via `(() => { /* arbitrary code; return $result */ })()`
+          this.#outputFunction = Function('match', ...captureGroupArgs, 'offset', 'string', 'groups', `return ${this.output};`);
+        }
+        else {
+          this.#outputFunction = Function('match', 'offset', 'string', `return ${this.output};`);
+        }
+      } catch (e) {
+        // Function replacement blocked by Chrome's Content Security Policy
+        console.warn('FoxReplace: Function replacement not supported in Chromium browsers due to CSP restrictions. Using text replacement instead.');
+        this.#outputFunction = () => this.output; // Fallback to simple text replacement
       }
     }
 
@@ -282,9 +288,9 @@ const SubstitutionGroup = (() => {
      */
     get nonEmptyName() {
       if (this.name) return this.name;
-      else if (this.urls.length === 0) return browser.i18n.getMessage("generalSubstitutions");
-      else if (this.urls.length === 1) return browser.i18n.getMessage("substitutionsForUrl", this.urls[0]);
-      else return browser.i18n.getMessage("substitutionsForUrls", this.urls[0]);
+      else if (this.urls.length === 0) return chrome.i18n.getMessage("generalSubstitutions");
+      else if (this.urls.length === 1) return chrome.i18n.getMessage("substitutionsForUrl", this.urls[0]);
+      else return chrome.i18n.getMessage("substitutionsForUrls", this.urls[0]);
     }
 
     /**
@@ -397,6 +403,6 @@ function checkVersion(json) {
   const oldVersions = ['0.14', '0.15', '2.1'];
 
   if (json.version == currentVersion) return { status: true };
-  else if (oldVersions.includes(json.version)) return { status: true, message: browser.i18n.getMessage('deprecatedJsonVersion', [json.version, currentVersion]) };
-  else return { status: false, message: browser.i18n.getMessage('unsupportedJsonVersion', [json.version, currentVersion]) };
+  else if (oldVersions.includes(json.version)) return { status: true, message: chrome.i18n.getMessage('deprecatedJsonVersion', [json.version, currentVersion]) };
+  else return { status: false, message: chrome.i18n.getMessage('unsupportedJsonVersion', [json.version, currentVersion]) };
 }

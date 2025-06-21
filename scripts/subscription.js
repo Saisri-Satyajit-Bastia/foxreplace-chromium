@@ -29,14 +29,14 @@ var subscription = (() => {
      *  Starts the subscription service.
      */
     start(url, period) {
-      return browser.alarms.get(ALARM_NAME)
+      return chrome.alarms.get(ALARM_NAME)
         .then(alarm => {
           if (alarm) return;  // already started
 
           subscribedUrl = url;
-          browser.alarms.onAlarm.addListener(update);
+          chrome.alarms.onAlarm.addListener(update);
 
-          browser.alarms.create(ALARM_NAME, {
+          chrome.alarms.create(ALARM_NAME, {
             when: Date.now() + 100, // first call after 100 ms
             periodInMinutes: period
           });
@@ -57,9 +57,9 @@ var subscription = (() => {
      * Stops the subscription service.
      */
     stop() {
-      return browser.alarms.clear(ALARM_NAME)
+      return chrome.alarms.clear(ALARM_NAME)
         .then(cleared => {
-          if (cleared) setStatus(browser.i18n.getMessage("subscriptionStatus.disabled"));
+          if (cleared) setStatus(chrome.i18n.getMessage("subscriptionStatus_disabled"));
         });
     },
 
@@ -70,12 +70,12 @@ var subscription = (() => {
   };
 
   var subscribedUrl = "";
-  var status = browser.i18n.getMessage("subscriptionStatus.disabled");
+  var status = chrome.i18n.getMessage("subscriptionStatus_disabled");
 
   function update(alarm) {
     if (alarm.name != ALARM_NAME) return;
 
-    setStatus(browser.i18n.getMessage("subscriptionStatus.updating"));
+    setStatus(chrome.i18n.getMessage("subscriptionStatus_updating"));
 
     let init;
     if (new URL(subscribedUrl).protocol == "file:") init = { mode: "same-origin" };
@@ -88,7 +88,7 @@ var subscription = (() => {
         if (check.status) {
           let list = substitutionListFromJSON(json);
           storage.setList(list);
-          let status = browser.i18n.getMessage("subscriptionStatus.lastUpdate", new Date().toLocaleString());
+          let status = chrome.i18n.getMessage("subscriptionStatus_lastUpdate", new Date().toLocaleString());
 
           if (check.message) {
             status = `⚠ ${check.message} ${status}`;
@@ -107,7 +107,7 @@ var subscription = (() => {
 
   function setStatus(text) {
     status = text;
-    browser.runtime.sendMessage({
+    chrome.runtime.sendMessage({
       key: "subscriptionStatus",
       status
     });

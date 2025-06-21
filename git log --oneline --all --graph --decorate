@@ -1,0 +1,288 @@
+*   [33m21ff5af[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m Working Chromium port v0.0.1- Complete conversion from Firefox to Chromium browsers- All basic functionality working (text replacement, options, popup)- Context menus and keyboard shortcuts functional- Import/export working- Function replacement falls back to text replacement with warning- Popup styling fixed with hover effects and proper shortcut display- Tested on Microsoft Edge- Full credit to original author Marc Ruiz Altisent
+[31m|[m[32m\[m  
+[31m|[m * [33m45d46d7[m Version 2.6.2.
+[31m|[m * [33mfa1f9da[m Update changelog.
+[31m|[m * [33m4cf6a67[m Minimum Firefox version is 90 for private properties.
+[31m|[m * [33ma4b6307[m Simplification of whole words handling using negative lookbehind that is now supported in JavaScript.
+[31m|[m * [33m9c625de[m Optimization: create the output function for each substitution once and cache it.
+[31m|[m * [33mf1a61df[m Implement correct behaviour of replace whole words with function.
+[31m|[m * [33m1bb7c73[m Refactoring of the "replace with function" implementation.
+[31m|[m * [33m8f6952f[m Fix #362.
+[31m|[m * [33m5900e40[m Fix bugs introduced in last release (#355). Version 2.6.1.
+[31m|[m * [33m8ba0f63[m Version 2.6.0.
+[31m|[m * [33m364422a[m Update changelog regarding Hindi locale.
+[31m|[m *   [33mfc227fe[m Merge pull request #352 from Prasanta-Hembram/master
+[31m|[m [33m|[m[34m\[m  
+[31m|[m [33m|[m * [33m7135a73[m Update messages.json
+[31m|[m [33m|[m *   [33m698f4af[m Merge branch 'Woundorf:master' into master
+[31m|[m [33m|[m [35m|[m[33m\[m  
+[31m|[m [33m|[m [35m|[m[33m/[m  
+[31m|[m [33m|[m[33m/[m[35m|[m   
+[31m|[m * [35m|[m [33m4723c18[m Upgrade jQuery to v3.7.0 to address GitHub security warnings.
+[31m|[m * [35m|[m [33m706a181[m Update changelog to add new replace with function feature.
+[31m|[m * [35m|[m [33m1b454e9[m Remove unused strings and minor stylistic changes in others.
+[31m|[m * [35m|[m   [33m0a5ed28[m Merge pull request #351 from 0styx0/feature/implement_replace_js_function
+[31m|[m [1;31m|[m[1;32m\[m [35m\[m  
+[31m|[m [1;31m|[m * [35m|[m [33m1193d72[m issue-214 fix: remove accum from the end
+[31m|[m [1;31m|[m * [35m|[m [33m06c40a3[m issue-214 docs: add doc-comment for DropdownEditor class
+[31m|[m [1;31m|[m * [35m|[m [33mb82dd7d[m issue-214 chore: remove warning if no input type specified
+[31m|[m [1;31m|[m * [35m|[m [33m47181ce[m issue-214 chore: update json version
+[31m|[m [1;31m|[m * [35m|[m [33m74f6212[m issue-214 fix: ensure fromJSON works correctly if deserializing with outputType undefined
+[31m|[m [1;31m|[m * [35m|[m [33me25106f[m issue-214 docs: add doc-comment for replaceWithFn
+[31m|[m [1;31m|[m * [35m|[m [33mbeb3c86[m issue-214 docs: update doc for whole-world replace escaping
+[31m|[m [1;31m|[m * [35m|[m [33m76c1aec[m issue-214 feat: ensure outputType exists within enum
+[31m|[m [1;31m|[m * [35m|[m [33ma768ce9[m issue-214 feat: display sidebar warning if outputType=function (and add icon to preferences page)
+[31m|[m [1;31m|[m * [35m|[m [33m69c146b[m issue-214 fix: un-reverse dropdown items in list
+[31m|[m [1;31m|[m * [35m|[m [33m48f95bb[m issue-214 fix: default to replace by text
+[31m|[m [1;31m|[m * [35m|[m [33mca25e61[m issue-214 fix: all value: number MUST correspond to the indices of the STRINGS
+[31m|[m [1;31m|[m * [35m|[m [33m2ab48d2[m issue-214 fix: make output type text display by default
+[31m|[m [1;31m|[m * [35m|[m   [33m616519a[m Merge branch 'feature/implement_replace_js_function' of github.com:0styx0/foxreplace into feature/implement_replace_js_function
+[31m|[m [1;31m|[m [1;33m|[m[1;34m\[m [35m\[m  
+[31m|[m [1;31m|[m [1;33m|[m * [35m|[m [33m3fb4449[m issue-214 feat: add warning about replace with function allowing for arbitrary JS execution
+[31m|[m [1;31m|[m * [1;34m|[m [35m|[m [33m53e7b32[m issue-214 feat: add warning about replace with function allowing for arbitrary JS execution
+[31m|[m [1;31m|[m [1;34m|[m[1;34m/[m [35m/[m  
+[31m|[m [1;31m|[m * [35m|[m [33m1aa89b6[m issue-214 fix: fix bug I created that disabled replace functionality from the options page
+[31m|[m [1;31m|[m * [35m|[m [33m6564ad2[m issue-214 feat: can replace text with function
+[31m|[m [1;31m|[m * [35m|[m [33mb30e122[m issue-214 feat: can replace whole words with function
+[31m|[m [1;31m|[m * [35m|[m [33m468c576[m issue-214 feat: can replace regex with JS function
+[31m|[m [1;31m|[m[1;31m/[m [35m/[m  
+[31m|[m [1;31m|[m * [33m5e13e0a[m changed folder name
+[31m|[m [1;31m|[m * [33m8073662[m Create messages.json
+[31m|[m [1;31m|[m[1;31m/[m  
+[31m|[m * [33m59455b7[m Version 2.5.0.
+[31m|[m * [33mdd2cb86[m Replace deprecated property in the manifest.
+[31m|[m * [33m96ee527[m Match any and multiple whitespace characters
+[31m|[m * [33m3e90864[m Sidebar jQuery-free.
+[31m|[m * [33mf5eb6be[m Version 2.4.1.
+[31m|[m * [33mf55012d[m Apply automatic substitutions to all visible tabs with periodic replace (#336).
+[31m|[m * [33m4bafab9[m Version 2.4.0.
+[31m|[m * [33mfac9ae5[m Modify appearance of search bar to better match other elements. #134
+[31m|[m * [33m0e2df84[m Add localization for the search bar. #134
+[31m|[m *   [33mbb0d063[m Merge pull request #322 from dcunhas/search
+[31m|[m [1;35m|[m[1;36m\[m  
+[31m|[m [1;35m|[m * [33me19b83b[m removed debugging log
+[31m|[m [1;35m|[m * [33mcfe0fd2[m Fixed bug with clearing search bar without clear button not reenabling control buttons
+[31m|[m * [1;36m|[m [33mf3dd298[m Update changelog.
+[31m|[m * [1;36m|[m [33m3bb45a6[m Merge pull request #321 from dcunhas/search
+[31m|[m [31m|[m[1;36m\[m[1;36m|[m 
+[31m|[m [31m|[m * [33mc7ccddb[m Fix formatting errors
+[31m|[m [31m|[m * [33mea35a12[m Check if currently searching before adding new empty row
+[31m|[m [31m|[m * [33m1e044e4[m disable move and clear buttons during search
+[31m|[m [31m|[m * [33m5a8df09[m Changed clear search button to icon, fixed problem with text continuing under clear button
+[31m|[m [31m|[m * [33m95aa302[m Fixed minor typo issues
+[31m|[m [31m|[m * [33ma8f13a3[m Fixed tab instead of space issue
+[31m|[m [31m|[m * [33mf0a8a5c[m Fixed error when saving while filtered with no visible substitutions
+[31m|[m [31m|[m * [33mba329fe[m Search works except for conflict with saving in empty case
+[31m|[m [31m|[m[31m/[m  
+[31m|[m * [33m3a68a84[m Version 2.3.2.
+[31m|[m * [33mbba000b[m Use a normal RegExp for plain text because it's way faster. #126
+[31m|[m * [33md0e4fbc[m Remove unused method.
+[31m|[m *   [33m0f683ba[m Merge pull request #286 from rogersachan/patch-1
+[31m|[m [33m|[m[34m\[m  
+[31m|[m [33m|[m * [33m51c8633[m Update URL
+[31m|[m [33m|[m * [33m4467d17[m Add header and AMO badge
+[31m|[m [33m|[m[33m/[m  
+[31m|[m * [33m495fc71[m Version 2.3.1.
+[31m|[m * [33m488c86a[m Check format version when importing a local or remote file, with appropriate warnings and errors.
+[31m|[m * [33m939b860[m Version 2.3.0.
+[31m|[m * [33m387e3f1[m Add help menu item pointing to FAQ.
+[31m|[m * [33m9200e2f[m Implement pending thing from port to Bootstrap.
+[31m|[m * [33m31d9c15[m Update XRegExp to version 4.2.4.
+[31m|[m * [33m34ee54c[m Port also the sidebar to Bootstrap.
+[31m|[m * [33m5337998[m Add a spinner while importing a list.
+[31m|[m * [33mb746774[m Stop editing when grid loses focus. Fixes #250.
+[31m|[m * [33mfba7373[m Migrate UI from Semantic UI to Bootstrap.
+[31m|[m * [33m6e31ea3[m Translate options title.
+[31m|[m * [33mcb0104f[m Select HMTL input elements without type (default type text) and their value attribute. Fixes #202.
+[31m|[m * [33mb52d791[m Version 2.2.3.
+[31m|[m * [33m532ccc6[m Make names of shortcut keys translatable.
+[31m|[m * [33ma212f79[m Changed shortcut to show the replace bar. Fixes #266.
+[31m|[m * [33mb98a216[m Replace the input type dropdown by a simple HTML select. Fixes #248.
+[31m|[m * [33m8e8a73e[m Version 2.2.2.
+[31m|[m * [33m93a8996[m Mark shell scripts as executable.
+[31m|[m * [33m9d43aa2[m Fix #260.
+[31m|[m * [33ma8a468c[m Version 2.2.1.
+[31m|[m * [33m55bd688[m Set a minimum of 1 to the subscription and auto-replace periods.
+[31m|[m * [33m5e5d1fb[m Keep cursor position or selection in input texts and textareas. Fixes #15.
+[31m|[m * [33m6247d27[m Apply consecutive groups with the same HTML mode at once to improve performance. #126
+[31m|[m * [33m3839a13[m In the options page, save only what has actually changed.
+[31m|[m * [33m8b9b83a[m Version 2.2.0.
+[31m|[m * [33me11735d[m Update config_build.sh.
+[31m|[m * [33m4aa3c3f[m Options are saved automatically. #226
+[31m|[m * [33m842880a[m The edit group button is larger and more separated from the remove button. #226
+[31m|[m * [33mf07c049[m Add a confirmation before clearing the substitution list and move the clear button to the right end.
+[31m|[m * [33m1d4fdef[m Add the ag-Grid update to the changelog.
+[31m|[m * [33m642c41d[m Avoid removing a whole row when pressing delete while editing the input or output of a substitution. #226
+[31m|[m * [33m0fe64a8[m Allow to edit substitution groups with double click. #226
+[31m|[m * [33me26922c[m Add checks to prevent saving substitutions with invalid regular expressions.
+[31m|[m * [33m98a44e6[m Fix an error that made editing not work.
+[31m|[m * [33m332d7b5[m Save column widths and order.
+[31m|[m * [33md68c562[m Initialize the auto-replace on load item in the Tools menu.
+[31m|[m * [33mabd05b4[m Update ag-Grid to version 14.2.0.
+[31m|[m * [33m382708a[m Move ag-Grid to the lib dir.
+[31m|[m * [33m9dfc18d[m Version 2.1.0.
+[31m|[m * [33mf85770d[m Add the Mode column in the main options page. #206
+[31m|[m * [33m1a036b1[m Change some texts to distinguish between automatic and manual substitutions.
+[31m|[m * [33m5acee79[m Make context menu optional. #229
+[31m|[m * [33m4829a6b[m Translate shortcut hint from Ctrl to Cmd on Mac. #230
+[31m|[m * [33m65eb7b6[m Set shortcut hints in the toolbar button menu dynamically.
+[31m|[m * [33me5ee418[m Fix typo that prevented applying the substitution list from the Tools menu. #230
+[31m|[m * [33m23b36b8[m Fix substitutions header names (forgot to call browser.i18n.getMessage).
+[31m|[m * [33m5137ac5[m Apply substitution groups according to their mode: automatic for on-load and periodic and manual for the user-requested. #206
+[31m|[m * [33mabed0e1[m Support substitution group mode in options. #206
+[31m|[m * [33mcb84d2b[m Add a mode attribute to SubstitutionGroup to represent the mode of application. #206
+[31m|[m * [33mbcfff79[m Modernize core.js.
+[31m|[m * [33mbae3ccc[m Drop support for substitution lists in the 0.13 format.
+[31m|[m * [33m6c95b2f[m Rename fxrIsExclusionUrl to isExclusionUrl.
+[31m|[m * [33m10baf46[m Remove unused functions.
+[31m|[m * [33mf28a11b[m Move root scripts to the scripts dir.
+[31m|[m * [33med508c4[m Version 2.0.0.
+[31m|[m * [33m79fcf3b[m Move xregexp-all-min.js to the lib dir.
+[31m|[m * [33m14b8c7f[m Use DOMParser instead of innerHTML.
+[31m|[m * [33m42de976[m Turn off autocomplete in the sidebar.
+[31m|[m * [33m2602ff9[m Add a menu item to show the replace sidebar.
+[31m|[m * [33m7febf70[m Add a Tools submenu.
+[31m|[m * [33m99e7436[m Convert FoxReplace into a pure WebExtension.
+[31m|[m * [33m98ab889[m Use the menus API instead of contextMenus.
+[31m|[m * [33mf3c238b[m Fix export problem #222.
+[31m|[m * [33m7f51faf[m Fix bug related to subscription: if it was enabled and pointed to a valid resource it would keep restarting forever every 100 ms, causing the prefs to be reloaded and not giving the user time to disable it.
+[31m|[m * [33m656d8f4[m Update warning correctly. It didn't work sometimes because of asynchronism.
+[31m|[m * [33maf9e2f8[m Enable translation.
+[31m|[m * [33mda6c3a8[m Convert the replace bar into a WebExtension sidebar.
+[31m|[m * [33m6fdc3d4[m Move context menu to the WebExtension.
+[31m|[m * [33m75ab8c0[m Move shortcuts to the WebExtension.
+[31m|[m * [33m3325953[m Version 1.1.3.
+[31m|[m * [33mea685bb[m Add warning about potential security and privacy issues when using subscription.
+[31m|[m * [33m87ccd18[m Correct wrong string.
+[31m|[m * [33m5255cf8[m Version 1.1.2.
+[31m|[m * [33m5f44ee2[m Bugfix: instant replace followed old preferences instead of the new ones.
+[31m|[m * [33m8cf7ea3[m Version 1.1.1.
+[31m|[m * [33mec2e1e0[m Set maxVersion to 56.*.
+[31m|[m * [33m1c9a11b[m Bugfix: the input type was not properly saved in the group editor.
+[31m|[m * [33m494ed60[m Version 1.1.0.
+[31m|[m * [33m38318cb[m Minimum required Firefox version is now 55.0.
+[31m|[m * [33m2a65975[m Cut long lines in the toolbar button with an ellipsis.
+[31m|[m * [33m19553f8[m Change the shortcut to apply the substitution list to Ctrl+F9 because Shift+F9 is now used by Firefox.
+[31m|[m * [33m2718c33[m Fix a bug when applying the substitution list manually.
+[31m|[m * [33m53e676f[m Move the toolbar button to the WebExtension as a browser action.
+[31m|[m * [33m0dfd8ce[m Move all grid components to a separate file.
+[31m|[m * [33m4215c4c[m Fix some problems in bootstrap.js.
+[31m|[m * [33ma157981[m Move data, the options window, subscription, and periodic replace to the WebExtension.
+[31m|[m * [33m6ac9cee[m Run the content scripts when the DOM is loaded (instead of when everything is loaded).
+[31m|[m * [33m119df4f[m Version 1.0.0.
+[31m|[m * [33m99694bd[m Improve end-of-line normalization by forcing .sh files to use LF always.
+[31m|[m * [33maf815c3[m Update translations.
+[31m|[m * [33m762b3c9[m Use "for ... of" instead of deprecated "for each ... in".
+[31m|[m * [33m46bbe5e[m Get all the prefs at once from the WebExtension.
+[31m|[m * [33m14def11[m Embed a WebExtension and perform the substitutions in it.
+[31m|[m * [33mfe9efb7[m toolbarButton is sometimes undefined.
+[31m|[m * [33m6515495[m Keep the current substitution list in the foxreplace global object instead of the window-associated objects.
+[31m|[m * [33m3def238[m Cleaner application of instant replace without overwriting and then restoring the normal substitution list.
+[31m|[m * [33ma6397ba[m Fix typo in changelog.txt.
+[31m|[m * [33m815619f[m Fix build.sh to support CR LF line endings in chrome.manifest and at the same time make the two sed replacements more readable.
+[31m|[m * [33m4b54ffc[m Normalize line endings.
+[31m|[m * [33m4afe7c8[m getLocalizedString delegates on strings module.
+[31m|[m * [33m4841686[m Apply recommended hack when creating the string bundle.
+[31m|[m * [33m0e677de[m Convert to bootstrapped addon.
+[31m|[m * [33m14fb11e[m Load global CSS manually.
+[31m|[m * [33m3666343[m Create XUL elements dynamically.
+[31m|[m * [33mf06009f[m Load default preferences manually.
+[31m|[m * [33m52e00b7[m Change resource:// URIs to chrome://.
+[31m|[m * [33m44ead64[m Change license to GPLv3 or later.
+[31m|[m * [33mc2664e7[m Fix #183, an error introduced in f571fda.
+[31m|[m * [33mb0b24f1[m Minor changelog edit.
+[31m|[m * [33m2e5be95[m Version 0.17.2.
+[31m|[m * [33md412014[m Compatibility with Firefox up to 52.
+[31m|[m * [33m5bccfc4[m Update translations.
+[31m|[m * [33me480fe0[m Use always a RegExp to do substitutions, even with plain text.
+[31m|[m * [33mf571fda[m Don't modify nodes if text hasn't actually changed.
+[31m|[m * [33m69c80b7[m Version 0.17.1.
+[31m|[m * [33m538f188[m Compatibility with Firefox up to 46.
+[31m|[m * [33m1ce46f7[m Update translations.
+[31m|[m * [33m9246b22[m Fix #169 by changing let to var.
+[31m|[m * [33mbb036db[m Remove event listeners when they're no longer needed.
+[31m|[m * [33mf996359[m Focus on the help tab if it's already open.
+[31m|[m * [33me6b8bc5[m Update shortcuts in the help file.
+[31m|[m * [33m845ad20[m Update the help file to remove references to the old Firefox menu.
+[31m|[m * [33mc180c15[m Fix bug when opening the options window: it was always opened as a modal dialog.
+[31m|[m * [33ma0c5648[m Update the homepage URL in install.rdf.
+[31m|[m * [33m3dfed7f[m Version 0.17.0.
+[31m|[m * [33m3f4406c[m Update translations for release.
+[31m|[m * [33mb56333d[m Compatibility with Firefox up to 44.0.
+[31m|[m * [33meea46c8[m Stop using FUEL.
+[31m|[m * [33m15d9d61[m Fix region for menu icons, which was not updated at 7e2ae37.
+[31m|[m * [33md09e1bb[m Add a basic .gitignore.
+[31m|[m * [33m8f5802e[m Create a true readme for GitHub.
+[31m|[m * [33m70d0baa[m Version 0.17.0b3.
+[31m|[m * [33m4db9f5d[m Update translations for release.
+[31m|[m * [33m5ad347c[m Fix typo (issue 165).
+[31m|[m * [33m7ed176b[m Fix use of OS.File.exists: it doesn't return a boolean, but a Promise that resolves to a boolean. This caused a bug on a clean install of FoxReplace, where it didn't create the initial file with the empty list.
+[31m|[m * [33mf835d3e[m Version 0.17.0b3pre for BabelZilla.
+[31m|[m * [33m5fe7f2a[m Update translation credits.
+[31m|[m * [33m38fd1c8[m Update translations.
+[31m|[m * [33mf885fe2[m Compatibility with Firefox up to 43.0.
+[31m|[m * [33ma0ecdf4[m Show a progress bar and disable list modification actions while a new list is being imported from file or URL.
+[31m|[m * [33mc0e047b[m The I/O module doesn't show error alerts anymore, it just returns promises that can fulfill or fail with an error message. The alerts are now shown from options.js.
+[31m|[m * [33macce138[m Move the code to show dialogs for importing and exporting from io.js to options.js, where it really belongs.
+[31m|[m * [33mf20f070[m Version 0.17.0b2.
+[31m|[m * [33m9359cb1[m Update translations for release including the new locale ja (partial translation).
+[31m|[m * [33m1b86a3c[m Compatibility with Firefox up to 39.0.
+[31m|[m * [33m9545a6d[m Fix subscription to a local URL for Firefox 35+ (issue 157).
+[31m|[m * [33m9e1bb99[m Version 0.17.0b1.
+[31m|[m * [33m4b7d310[m Update translations for release.
+[31m|[m * [33m6871023[m Make a backup of the substitution list in preferences to minimize risks in the next beta release.
+[31m|[m * [33mc934c19[m Update translations.
+[31m|[m * [33m573d7fe[m Compatibility with Firefox up to 38.0.
+[31m|[m * [33mbacc667[m Change shortcuts because of conflict with WebIDE. The new ones are F9 to show the replace bar and Shift+F9 to apply the substitution list. This solves issue 154.
+[31m|[m * [33m7e2ae37[m Remove styles for old Firefox versions.
+[31m|[m * [33m2176380[m Remove support for the Firefox app menu, which disappeared in version 29.
+[31m|[m * [33mc6b4ffe[m Remove code for old Firefox versions.
+[31m|[m * [33m7db7270[m Save the substitution list to a file instead of preferences to allow bigger lists. This fixes issue 145.
+[31m|[m * [33m69c182b[m The io.js module now uses the asynchronous OS.File API.
+[31m|[m * [33m848876e[m Minimum required Firefox version is now 30.0, in order to be able to use the newest version of OS.File.read(). Maximum version has been also bumped to 37.0.
+[31m|[m * [33m089bc7d[m Rename I/O methods.
+[31m|[m * [33m8b1eb5a[m Minimum required Firefox version is now 29.0, in order to be able to use the native Promise API.
+[31m|[m * [33m831bec0[m Removed support to substitution lists in XML.
+[31m|[m * [33m84af5df[m Rename fxrShowFileDialog to showFileDialog.
+[31m|[m * [33m48fbd8d[m Rename fxrIO to io.
+[31m|[m * [33m9d11203[m Minimum required Firefox version is now 19.0, in order to be able to use the OS.File API.
+[31m|[m * [33m20f46be[m Move to a separate module the code to apply the substitution list to a window or frame.
+[31m|[m * [33mc066161[m Remove commented code from foxreplace.css.
+[31m|[m * [33m51b7133[m Animated showing and hiding of the replace bar.
+[31m|[m * [33m3802aa8[m Version 0.16.1.
+[31m|[m * [33m8559f01[m Fixed bug where the substitution group editor ok button failed when not all the URLs were visible (issue 139). The solution is to get the URL from the "label" attribute instead of the property.
+[31m|[m * [33m68bb3ac[m The auto-replace on load option on the toolbar button menu wasn't checked when starting Firefox because it isn't created until it's shown the first time (issue 142).
+[31m|[m * [33m203dc91[m Version 0.16.0.
+[31m|[m * [33m6fe733f[m Compatibility with Firefox up to 33.0.
+[31m|[m * [33mddab07e[m Update translations for release.
+[31m|[m * [33me3a0e1a[m Incremented version to 0.16.0pre.
+[31m|[m * [33m051895f[m Compatibility with Firefox up to 32.0.
+[31m|[m * [33m555c044[m Update translations to devel version. New locale: ast-ES.
+[31m|[m * [33m29db95c[m Updated shortcuts in the options dialog (issue 108).
+[31m|[m * [33mbc6b701[m New option to periodically apply the substitution list (issue 129).
+[31m|[m * [33m3c1691f[m Pressing the return key when focus is in one of the text fields applies the replace bar substitution (issue 107).
+[31m|[m * [33m0b98d33[m The replace bar is hidden when the ESC key is pressed (issue 107).
+[31m|[m * [33md452866[m Unconfirmed changes (i.e. additions or editions) in substitution groups are automatically confirmed when pressing the dialog OK button (issue 125).
+[31m|[m * [33m9c4950b[m Move toolbar close button to the right to match newer Firefox versions.
+[31m|[m * [33mf623349[m Update toolbar icon for Australis.
+[31m|[m * [33m3775726[m Versió 0.15.0.
+[31m|[m * [33med16a56[m Actualització de traduccions a versió de publicació.
+[31m|[m * [33mc6cfe30[m Ampliació de compatibilitat fins a Firefox 26.0.
+[31m|[m * [33m3b11d6b[m S'afegeix l'antiga resolució de l'issue 21 al changelog.
+[31m|[m * [33m56b4dfd[m S'esborra una línia duplicada.
+[31m|[m * [33m5f6e1fc[m Es fan persistents l'amplada i l'alçada dels diàlegs d'opcions.
+[31m|[m * [33m01fe047[m Es treuen els dumb items perquè ja no són necessaris.
+[31m|[m * [33m6a6ed07[m Els diàlegs d'opcions ara són redimensionables en totes les plataformes, sempre que s'obrin a través de la interfície de FoxReplace. El contingut s'ajusta a la mida de la finestra i no hi ha restriccions de mides. També, ara les finestres que s'obren des de la d'opcions s'obren amb openSubDialog.
+[31m|[m * [33ma6029c0[m Es treu l'etiqueta de "Principal" de l'únic prefpane de la finestra d'opcions perquè a Mac es veu aquest títol en lloc del de la finestra, i havent-n'hi un de sol no té gaire sentit.
+[31m|[m * [33m249d309[m Es mouen les descripcions dels diàlegs d'opcions a tooltips per netejar la interfície.
+[31m|[m * [33mb764e7a[m Es soluciona d'una altra manera el problema d'accés a null de r205. Amb la solució anterior apareixia un altre problema quan instantApply era fals.
+[31m|[m * [33m91e0475[m Es soluciona un problema d'accés a null que es podia produir amb el commit anterior.
+[31m|[m * [33m3542dcf[m Es canvia la manera d'obrir la finestra d'opcions perquè tingui en compte la preferència browser.preferences.instantApply per ser modal o no i perquè no se'n pugui obrir més d'una alhora. Això soluciona l'issue 98 i l'issue 66.
+[31m|[m * [33m58b4647[m Es canvia la manera de llegir/escriure la llista de substitucions a preferències perquè respecti la preferència browser.preferences.instantApply.
+[31m|[m * [33m4e6e74b[m Es marca el mètode upgradeListToJSON com a "privat".
+[31m|[m * [33m2477fc7[m Actualització de la TreeView per fer-la compatible amb Firefox >= 22.
+[31m|[m * [33m51dd74f[m Ampliació de compatibilitat fins a Firefox 24.0. Versió 0.15.0b2.
+[31m|[m * [33mafb5f9f[m Es millora el comportament de la llista de substitucions al diàleg d'opcions (issue 112).
+[31m|[m * [33mc4400b8[m Els grups de substitucions nous estan habilitats per defecte a l'editor de grups de substitucions.
+[31m|[m * [33m73ce553[m Actualització de traduccions a versió de publicació. Versió 0.15.0b1.
+[31m|[m * [33m4e35b32[m Actualització de tra

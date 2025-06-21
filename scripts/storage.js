@@ -17,18 +17,18 @@
 var storage = {
 
   getList() {
-    return browser.storage.local.get("list").then(results => {
+    return chrome.storage.local.get("list").then(results => {
       if (results.list) return substitutionListFromJSON(results.list);
       else return [];
     });
   },
 
   setList(list) {
-    return browser.storage.local.set({ list: substitutionListToJSON(list) });
+    return chrome.storage.local.set({ list: substitutionListToJSON(list) });
   },
 
   getPrefs() {
-    return browser.storage.local.get({
+    return chrome.storage.local.get({
       enableContextMenu: false,
       autoReplaceOnLoad: false,
       autoReplacePeriodically: false,
@@ -65,7 +65,7 @@ var storage = {
           break;
       }
     }
-    return browser.storage.local.set(sanitizedPrefs);
+    return chrome.storage.local.set(sanitizedPrefs);
   },
 
   getAutomaticGroups() {
@@ -77,13 +77,13 @@ var storage = {
   },
 
   getMainColumnState() {
-    return browser.storage.local.get("mainColumnState").then(result => {
+    return chrome.storage.local.get("mainColumnState").then(result => {
       return result.mainColumnState;
     });
   },
 
   setMainColumnState(columnState) {
-    return browser.storage.local.set({ mainColumnState: columnState });
+    return chrome.storage.local.set({ mainColumnState: columnState });
   }
 
 };

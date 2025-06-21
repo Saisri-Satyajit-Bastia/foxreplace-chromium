@@ -94,7 +94,7 @@ var groupEditor = (() => {
           }
         },
         cellRenderer(params) {
-          return params.value === "" ? browser.i18n.getMessage("list.urlHint") : params.value;
+          return params.value === "" ? chrome.i18n.getMessage("list_urlHint") : params.value;
         }//,
         //onCellValueChanged(params) {
         //  // TODO to use this instead of onCellEditingStopped change params.value -> params.newValue and params.rowIndex -> params.node.rowIndex
@@ -155,51 +155,51 @@ var groupEditor = (() => {
 
     columnDefs: [
       {
-        headerName: browser.i18n.getMessage("list.inputHeader"),
+        headerName: chrome.i18n.getMessage("list_inputHeader"),
         field: "input",
         cellRenderer(params) {
-          let text = params.value === "" ? browser.i18n.getMessage("list.inputHint") : escapeHtml(params.value);
+          let text = params.value === "" ? chrome.i18n.getMessage("list_inputHint") : escapeHtml(params.value);
           if (params.node.error) text += ` <i class="warning sign icon" title="${params.node.error}"></i>`;
           return text;
         }
       },
       {
-        headerName: browser.i18n.getMessage("list.inputTypeHeader"),
+        headerName: chrome.i18n.getMessage("list_inputTypeHeader"),
         field: "inputType",
         cellRenderer(params) {  // TODO improve (less hardcoding)
           switch (Number(params.value)) {
-            case 0: return browser.i18n.getMessage("inputType.text");
-            case 1: return browser.i18n.getMessage("inputType.wholeWords");
-            case 2: return browser.i18n.getMessage("inputType.regExp");
+            case 0: return chrome.i18n.getMessage("inputType_text");
+            case 1: return chrome.i18n.getMessage("inputType_wholeWords");
+            case 2: return chrome.i18n.getMessage("inputType_regExp");
             default: return params.value;
           }
         },
         cellEditor: InputTypeEditor
       },
       {
-        headerName: browser.i18n.getMessage("list.outputHeader"),
+        headerName: chrome.i18n.getMessage("list_outputHeader"),
         field: "output",
         cellRenderer(params) {
-          return params.data.input === "" ? browser.i18n.getMessage("list.outputHint") : escapeHtml(params.value);
+          return params.data.input === "" ? chrome.i18n.getMessage("list_outputHint") : escapeHtml(params.value);
         }
       },
       {
-        headerName: browser.i18n.getMessage("list.outputTypeHeader"),
+        headerName: chrome.i18n.getMessage("list_outputTypeHeader"),
         field: "outputType",
         cellRenderer(params) {
           switch (Number(params.value)) {
-            case 0: return browser.i18n.getMessage("outputType.text");
-            case 1: return browser.i18n.getMessage("outputType.function");
+            case 0: return chrome.i18n.getMessage("outputType_text");
+            case 1: return chrome.i18n.getMessage("outputType_function");
             default: return params.value
           }
         },
         cellEditor: OutputTypeEditor
       },
       {
-        headerName: browser.i18n.getMessage("list.caseSensitiveHeader"),
+        headerName: chrome.i18n.getMessage("list_caseSensitiveHeader"),
         field: "caseSensitive",
         cellRenderer(params) {
-          return params.value ? browser.i18n.getMessage("yes") : browser.i18n.getMessage("no");
+          return params.value ? chrome.i18n.getMessage("yes") : chrome.i18n.getMessage("no");
         },
         cellEditor: CheckboxCellEditor
       },
@@ -418,20 +418,32 @@ var groupEditor = (() => {
   const editor = {
 
     init() {
-      this.initUrls();
-      this.initSubstitutions();
+      // Delay initialization until modal is shown
+      this.initialized = false;
     },
 
     initUrls() {
       const grid = document.getElementById("urlsGrid");
-      new agGrid.Grid(grid, urlsGridOptions);
-      addUrlsEventListeners();
+      if (grid) {
+        new agGrid.Grid(grid, urlsGridOptions);
+        addUrlsEventListeners();
+      }
     },
 
     initSubstitutions() {
       const grid = document.getElementById("substitutionsGrid");
-      new agGrid.Grid(grid, substitutionsGridOptions);
-      addSubstitutionsEventListeners();
+      if (grid) {
+        new agGrid.Grid(grid, substitutionsGridOptions);
+        addSubstitutionsEventListeners();
+      }
+    },
+
+    ensureInitialized() {
+      if (!this.initialized) {
+        this.initUrls();
+        this.initSubstitutions();
+        this.initialized = true;
+      }
     },
 
     cleanUp() {
@@ -477,6 +489,7 @@ var groupEditor = (() => {
     },
 
     setGroup(group) {
+      this.ensureInitialized();
       this.isEditing = true;
 
       document.getElementById('groupEnabled').checked = group.enabled;
@@ -533,14 +546,14 @@ var groupEditor = (() => {
     },
 
     adjustUrlsColumnWidths() {
-      if (!adjustedUrlsColumnWidths) {
+      if (!adjustedUrlsColumnWidths && urlsGridOptions.api) {
         urlsGridOptions.api.sizeColumnsToFit();
         adjustedUrlsColumnWidths = true;
       }
     },
 
     adjustSubstitutionsColumnWidths() {
-      if (!adjustedSubstitutionsColumnWidths) {
+      if (!adjustedSubstitutionsColumnWidths && substitutionsGridOptions.api) {
         substitutionsGridOptions.api.sizeColumnsToFit();
         adjustedSubstitutionsColumnWidths = true;
       }

@@ -23,23 +23,33 @@ function onLoad() {
   document.getElementById('help').addEventListener('click', showHelp);
 
   storage.getPrefs().then(prefs => {
-    if (prefs.autoReplaceOnLoad) document.getElementById("autoReplaceOnLoadCheck").classList.add("fa-check");
-    else document.getElementById("autoReplaceOnLoadCheck").classList.remove("fa-check");
+    const checkIcon = document.getElementById("autoReplaceOnLoadCheck");
+    const iconDiv = checkIcon.parentElement;
+    if (prefs.autoReplaceOnLoad) {
+      checkIcon.classList.add("fa-check");
+      iconDiv.style.display = "block";
+    } else {
+      checkIcon.classList.remove("fa-check");
+      iconDiv.style.display = "none";
+    }
   });
 
-  Promise.all([browser.commands.getAll(), browser.runtime.getPlatformInfo()]).then(([commands, info]) => {
+  Promise.all([chrome.commands.getAll(), chrome.runtime.getPlatformInfo()]).then(([commands, info]) => {
     for (let command of commands) {
       let elementId;
       switch (command.name) {
-        case "_execute_sidebar_action": elementId = "replaceShortcut"; break;
         case "apply-substitution-list": elementId = "replaceWithListShortcut"; break;
       }
-      let shortcut = command.shortcut;
-      if (info.os == "mac") shortcut = shortcut.replace("Ctrl", browser.i18n.getMessage("keys.cmd"));
-      shortcut = shortcut.replace("Ctrl", browser.i18n.getMessage("keys.ctrl"));
-      shortcut = shortcut.replace("Shift", browser.i18n.getMessage("keys.shift"));
-      document.getElementById(elementId).textContent = shortcut;
+      if (elementId && document.getElementById(elementId) && command.shortcut) {
+        let shortcut = command.shortcut;
+        if (info.os == "mac") shortcut = shortcut.replace("Ctrl", chrome.i18n.getMessage("keys_cmd"));
+        shortcut = shortcut.replace("Ctrl", chrome.i18n.getMessage("keys_ctrl"));
+        shortcut = shortcut.replace("Shift", chrome.i18n.getMessage("keys_shift"));
+        document.getElementById(elementId).textContent = shortcut;
+      }
     }
+  }).catch(() => {
+    // Ignore errors if commands API fails
   });
 }
 
@@ -53,12 +63,12 @@ function onUnload() {
 }
 
 function showReplaceBar() {
-  browser.sidebarAction.open()
+  chrome.tabs.create({url: 'sidebar/sidebar.html'})
     .then(() => window.close());
 }
 
 function replaceWithList() {
-  browser.runtime.sendMessage({ key: "replaceWithList" })
+  chrome.runtime.sendMessage({ key: "replaceWithList" })
     .then(() => window.close());
 }
 
@@ -71,12 +81,12 @@ function toggleAutoReplaceOnLoad() {
 }
 
 function showOptions() {
-  browser.runtime.openOptionsPage()
+  chrome.runtime.openOptionsPage()
     .then(() => window.close());
 }
 
 function showHelp() {
-  browser.tabs.create({
+  chrome.tabs.create({
     url: 'https://github.com/Woundorf/foxreplace/wiki/FAQ'
   }).then(() => window.close());
 }

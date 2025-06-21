@@ -14,8 +14,53 @@
  *
  *  ***** END LICENSE BLOCK ***** */
 
+// Minimal storage object
+const storage = {
+  getPrefs() {
+    return chrome.storage.local.get({
+      enableContextMenu: false,
+      autoReplaceOnLoad: false,
+      autoReplacePeriodically: false,
+      autoReplacePeriod: 1,
+      enableSubscription: false,
+      subscriptionUrl: "",
+      subscriptionPeriod: 1
+    });
+  },
+  setPrefs(prefs) {
+    return chrome.storage.local.set(prefs);
+  }
+};
+
+// Minimal periodic replace
+const periodicReplace = {
+  alarmName: "periodicReplace",
+  start(period) {
+    return chrome.alarms.get(this.alarmName).then(alarm => {
+      if (alarm) return;
+      chrome.alarms.create(this.alarmName, {
+        when: Date.now() + 100,
+        periodInMinutes: period / 60
+      });
+    });
+  },
+  restart(period) {
+    this.stop().then(() => this.start(period));
+  },
+  stop() {
+    return chrome.alarms.clear(this.alarmName);
+  }
+};
+
+// Minimal subscription
+const subscription = {
+  start() { return Promise.resolve(); },
+  restart() { return Promise.resolve(); },
+  stop() { return Promise.resolve(); }
+};
+
 // Listen to messages from other parts of the WebExtension
-browser.runtime.onMessage.addListener(message => {
+chrome.runtime.onMessage.addListener(message => {
   switch (message.key) {
     case "replace":
     case "replaceWithList":
@@ -31,8 +76,12 @@ function replaceCurrentTab(aMessage) {
   const options = { active: true };
   if (aMessage.key != 'replaceWithListPeriod') options.currentWindow = true;    // limit to current window except for periodic substitutions
 
-  browser.tabs.query(options).then(tabs => {
-    for (const tab of tabs) browser.tabs.sendMessage(tab.id, aMessage);
+  chrome.tabs.query(options).then(tabs => {
+    for (const tab of tabs) {
+      chrome.tabs.sendMessage(tab.id, aMessage).catch(() => {
+        // Ignore connection errors - tab may not have content script
+      });
+    }
   });
 }
 
@@ -48,11 +97,11 @@ storage.getPrefs().then(prefs => {
 });
 
 // Update things
-browser.storage.onChanged.addListener(changes => {
+chrome.storage.onChanged.addListener(changes => {
   storage.getPrefs().then(prefs => {
     if (changes.enableContextMenu && changes.enableContextMenu.newValue != changes.enableContextMenu.oldValue) {
       if (prefs.enableContextMenu) createContextMenu();
-      else browser.menus.remove("context.apply-substitution-list");
+      else chrome.contextMenus.remove("context.apply-substitution-list");
     }
 
     if (changes.enableSubscription && changes.enableSubscription.newValue != changes.enableSubscription.oldValue) {
@@ -66,19 +115,19 @@ browser.storage.onChanged.addListener(changes => {
     }
 
     if (changes.autoReplaceOnLoad && changes.autoReplaceOnLoad.newValue != changes.autoReplaceOnLoad.oldValue) {
-      browser.menus.update("tools.auto-replace-on-load", { checked: prefs.autoReplaceOnLoad });
+      chrome.contextMenus.update("tools.auto-replace-on-load", { checked: prefs.autoReplaceOnLoad });
     }
   });
 });
 
 // Listen for periodic replace alarm
-browser.alarms.onAlarm.addListener(alarm => {
+chrome.alarms.onAlarm.addListener(alarm => {
   if (alarm.name == periodicReplace.alarmName) {
     replaceCurrentTab({ key: "replaceWithListPeriod"});
   }
 });
 
-browser.commands.onCommand.addListener(name => {
+chrome.commands.onCommand.addListener(name => {
   switch (name) {
     case "apply-substitution-list":
       replaceCurrentTab({ key: "replaceWithList" });
@@ -86,47 +135,52 @@ browser.commands.onCommand.addListener(name => {
   }
 });
 
+let menusCreated = false;
+
 function createContextMenu() {
-  browser.menus.create({
+  if (menusCreated) return;
+  chrome.contextMenus.create({
     id: "context.apply-substitution-list",
-    title: browser.i18n.getMessage("menu.replaceWithList"),
+    title: chrome.i18n.getMessage("menu_replaceWithList"),
     contexts: ["all"]
   });
 }
 
 function createToolsMenu(autoReplaceOnLoad) {
-  browser.menus.create({
+  if (menusCreated) return;
+  chrome.contextMenus.create({
     id: "tools.replace",
-    title: browser.i18n.getMessage("menu.replace"),
-    contexts: ["tools_menu"]
+    title: chrome.i18n.getMessage("menu_replace"),
+    contexts: ["all"]
   });
-  browser.menus.create({
+  chrome.contextMenus.create({
     id: "tools.apply-substitution-list",
-    title: browser.i18n.getMessage("menu.replaceWithList"),
-    contexts: ["tools_menu"]
+    title: chrome.i18n.getMessage("menu_replaceWithList"),
+    contexts: ["all"]
   });
-  browser.menus.create({
+  chrome.contextMenus.create({
     id: "tools.auto-replace-on-load",
     type: "checkbox",
-    title: browser.i18n.getMessage("menu.autoReplaceOnLoad"),
-    contexts: ["tools_menu"],
+    title: chrome.i18n.getMessage("menu_autoReplaceOnLoad"),
+    contexts: ["all"],
     checked: autoReplaceOnLoad
   });
-  browser.menus.create({
+  chrome.contextMenus.create({
     id: "tools.options",
-    title: browser.i18n.getMessage("menu.options"),
-    contexts: ["tools_menu"]
+    title: chrome.i18n.getMessage("menu_options"),
+    contexts: ["all"]
   });
-  browser.menus.create({
+  chrome.contextMenus.create({
     id: 'tools.help',
-    title: browser.i18n.getMessage('menu.help'),
-    contexts: ['tools_menu']
+    title: chrome.i18n.getMessage('menu_help'),
+    contexts: ['all']
   });
+  menusCreated = true;
 }
 
-browser.menus.onClicked.addListener(info => {
+chrome.contextMenus.onClicked.addListener(info => {
   if (info.menuItemId == "tools.replace") {
-    browser.sidebarAction.open();
+    chrome.tabs.create({url: 'sidebar/sidebar.html'});
   }
   else if (info.menuItemId == "context.apply-substitution-list" || info.menuItemId == "tools.apply-substitution-list") {
     replaceCurrentTab({ key: "replaceWithList" });
@@ -135,10 +189,10 @@ browser.menus.onClicked.addListener(info => {
     storage.setPrefs({ autoReplaceOnLoad: info.checked });
   }
   else if (info.menuItemId == "tools.options") {
-    browser.runtime.openOptionsPage();
+    chrome.runtime.openOptionsPage();
   }
   else if (info.menuItemId == 'tools.help') {
-     browser.tabs.create({
+     chrome.tabs.create({
       url: 'https://github.com/Woundorf/foxreplace/wiki/FAQ'
     });
   }

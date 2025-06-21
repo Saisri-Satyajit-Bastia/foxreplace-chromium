@@ -24,7 +24,7 @@ storage.getPrefs().then(prefs => {
 });
 
 // Listen to messages from background scripts
-browser.runtime.onMessage.addListener(message => {
+chrome.runtime.onMessage.addListener(message => {
   switch (message.key) {
     case "replace":
       storage.getPrefs().then(prefs => {

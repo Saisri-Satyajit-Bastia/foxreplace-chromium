@@ -15,9 +15,9 @@
  *  ***** END LICENSE BLOCK ***** */
 
 if (document.title) {
-  document.title = browser.i18n.getMessage(document.title);
+  document.title = chrome.i18n.getMessage(document.title);
 }
 
 document.querySelectorAll(".i18n").forEach(node => {
-  node.textContent = browser.i18n.getMessage(node.textContent);
+  node.textContent = chrome.i18n.getMessage(node.textContent);
 });

@@ -27,11 +27,11 @@ var periodicReplace = {
    * Starts the periodic replace.
    */
   start(period) {
-    return browser.alarms.get(this.alarmName)
+    return chrome.alarms.get(this.alarmName)
       .then(alarm => {
         if (alarm) return;  // already started
 
-        browser.alarms.create(this.alarmName, {
+        chrome.alarms.create(this.alarmName, {
           when: Date.now() + 100, // first call after 100 ms
           periodInMinutes: period / 60
         });
@@ -52,7 +52,7 @@ var periodicReplace = {
    * Stops the periodic replace.
    */
   stop() {
-    return browser.alarms.clear(this.alarmName);
+    return chrome.alarms.clear(this.alarmName);
   }
 
 };

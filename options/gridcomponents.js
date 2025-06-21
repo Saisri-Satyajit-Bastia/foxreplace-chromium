@@ -146,7 +146,7 @@ class DropdownEditor {
   init(params) {
     this.gui = $('<select>' +
                   this.options.reduce((accum, curOption, i) =>
-                    accum + DropdownEditor.getOption(params, i, browser.i18n.getMessage(curOption))
+                    accum + DropdownEditor.getOption(params, i, chrome.i18n.getMessage(curOption))
                   , '') +
                  '</select>')[0];
     this.width = params.column.actualWidth;
@@ -187,9 +187,9 @@ class InputTypeEditor extends DropdownEditor {
   colId = "inputType"
 
   options = [
-    "inputType.text",
-    "inputType.wholeWords",
-    "inputType.regExp"
+    "inputType_text",
+    "inputType_wholeWords",
+    "inputType_regExp"
   ];
 }
 
@@ -201,8 +201,8 @@ class OutputTypeEditor extends DropdownEditor {
   colId = "outputType"
 
   options = [
-    "outputType.text",
-    "outputType.function",
+    "outputType_text",
+    "outputType_function",
   ];
 }
 

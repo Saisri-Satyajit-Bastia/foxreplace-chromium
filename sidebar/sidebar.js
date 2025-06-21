@@ -44,7 +44,7 @@ function onSubmit(event) {
       true
     )
   ];
-  browser.runtime.sendMessage({
+  chrome.runtime.sendMessage({
     key: "replace",
     list: substitutionListToJSON(substitutionList)
   });

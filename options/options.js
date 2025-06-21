@@ -17,7 +17,7 @@
 var gridOptions = {
   columnDefs: [
     {
-      headerName: browser.i18n.getMessage("options.group.enabled"),
+      headerName: chrome.i18n.getMessage("options_group_enabled"),
       field: "enabled",
       width: 92,
       cellClass: "enabledCell",
@@ -25,29 +25,29 @@ var gridOptions = {
       suppressFilter: true
     },
     {
-      headerName: browser.i18n.getMessage("options.group.name"),
+      headerName: chrome.i18n.getMessage("options_group_name"),
       field: "nonEmptyName"
     },
     {
-      headerName: browser.i18n.getMessage("options.group.url"),
+      headerName: chrome.i18n.getMessage("options_group_url"),
       valueGetter: (params) => params.data.urls.length > 0 ? params.data.urls[0] : ""
     },
     {
-      headerName: browser.i18n.getMessage("list.inputHeader"),
+      headerName: chrome.i18n.getMessage("list_inputHeader"),
       valueGetter: (params) => params.data.substitutions.length > 0 ? params.data.substitutions[0].input : ""
     },
     {
-      headerName: browser.i18n.getMessage("list.outputHeader"),
+      headerName: chrome.i18n.getMessage("list_outputHeader"),
       valueGetter: (params) => params.data.substitutions.length > 0 ? params.data.substitutions[0].output : ""
     },
     {
-      headerName: browser.i18n.getMessage("options.group.mode"),
+      headerName: chrome.i18n.getMessage("options_group_mode"),
       field: "mode",
       cellRenderer(params) {  // TODO improve (less hardcoding)
         switch (Number(params.value)) {
-          case 0: return browser.i18n.getMessage("options.group.mode.autoAndManual");
-          case 1: return browser.i18n.getMessage("options.group.mode.auto");
-          case 2: return browser.i18n.getMessage("options.group.mode.manual");
+          case 0: return chrome.i18n.getMessage("options_group_mode_autoAndManual");
+          case 1: return chrome.i18n.getMessage("options_group_mode_auto");
+          case 2: return chrome.i18n.getMessage("options_group_mode_manual");
           default: return params.value;
         }
       }
@@ -100,16 +100,14 @@ function onLoad() {
 
   storage.getPrefs().then(loadPrefs);
 
-  browser.runtime.getBackgroundPage().then(background => {
-    $("#status").text(background.subscription.status);
-  });
+  $("#status").text("Disabled");
 
-  browser.runtime.onMessage.addListener(message => {
+  chrome.runtime.onMessage.addListener(message => {
     if (message.key == "subscriptionStatus")
       $("#status").text(message.status);
   });
 
-  browser.storage.onChanged.addListener(storageChangeListener);
+  chrome.storage.onChanged.addListener(storageChangeListener);
 
   //$(".menu .item").tab({
   //  onFirstLoad(tabPath) {
@@ -174,7 +172,7 @@ var eventListeners = {
     const url = URL.createObjectURL(blob);
     let downloadId;
 
-    browser.downloads.download({
+    chrome.downloads.download({
       url: url,
       filename: "FoxReplace.json",
       saveAs: true
@@ -185,11 +183,11 @@ var eventListeners = {
     function onChanged(delta) {
       if (delta.id == downloadId && (delta.state.current === "complete" || delta.state.current === "interrupted")) {
         URL.revokeObjectURL(url);
-        browser.downloads.onChanged.removeListener(onChanged);
+        chrome.downloads.onChanged.removeListener(onChanged);
       }
     }
 
-    browser.downloads.onChanged.addListener(onChanged);
+    chrome.downloads.onChanged.addListener(onChanged);
   },
   resetColumns() {
     gridOptions.columnApi.resetColumnState();
@@ -228,6 +226,7 @@ function removeEventListeners() {
 }
 
 function prepareGroupEditor(event) {
+  groupEditor.ensureInitialized();
   groupEditor.adjustUrlsColumnWidths();
   groupEditor.resetSearch();
 
@@ -246,7 +245,7 @@ function saveGroup(event) {
   let action = button.data('action');
 
   if (!groupEditor.isValidGroup()) {
-    alert(browser.i18n.getMessage("options.warning.atLeastOneSubstitutionAndNoErrors"));
+    alert(chrome.i18n.getMessage("options_warning_atLeastOneSubstitutionAndNoErrors"));
     return;
   }
 
@@ -276,11 +275,11 @@ function prepareImport(event) {
   $('#importError').addClass('d-none');
 
   if (from == 'file') {
-    $('#importTitle').text(browser.i18n.getMessage('options.import'));
+    $('#importTitle').text(chrome.i18n.getMessage('options_import'));
     $('#importModal').removeClass('importFromUrl').addClass('importFromFile');
   }
   else if (from == 'url') {
-    $('#importTitle').text(browser.i18n.getMessage('options.importFromUrl'));
+    $('#importTitle').text(chrome.i18n.getMessage('options_importFromUrl'));
     $('#importModal').removeClass('importFromFile').addClass('importFromUrl');
   }
 }
@@ -302,7 +301,7 @@ function startImport(event) {
     let files = $('#importFile')[0].files;
 
     if (files.length === 0) {
-      alert(browser.i18n.getMessage('options.warning.selectFile'));
+      alert(chrome.i18n.getMessage('options_warning_selectFile'));
     }
     else {
       importing = true;
@@ -321,7 +320,7 @@ function startImport(event) {
     let url = $('#importUrl').val();
 
     if (!url) {
-      alert(browser.i18n.getMessage('options.warning.enterUrl'));
+      alert(chrome.i18n.getMessage('options_warning_enterUrl'));
     }
     else {
       importing = true;
@@ -407,7 +406,7 @@ function importFromUrl(url) {
           }
         }
         else {
-          reject(Error(browser.i18n.getMessage('options.error.invalidJson', url)));
+          reject(Error(chrome.i18n.getMessage('options_error_invalidJson', url)));
         }
       }
       else {
@@ -415,7 +414,7 @@ function importFromUrl(url) {
       }
     };
     request.onerror = () => {
-      reject(Error(browser.i18n.getMessage('options.error.cantConnect')));
+      reject(Error(chrome.i18n.getMessage('options_error_cantConnect')));
     };
     request.send();
   });
@@ -428,14 +427,14 @@ function confirmClearGroups() {
 }
 
 function saveList() {
-  browser.storage.onChanged.removeListener(storageChangeListener);
+  chrome.storage.onChanged.removeListener(storageChangeListener);
 
   let list = [];
   gridOptions.api.forEachNode(node => {
     list.push(node.data);
   });
   storage.setList(list)
-    .then(() => { browser.storage.onChanged.addListener(storageChangeListener); });
+    .then(() => { chrome.storage.onChanged.addListener(storageChangeListener); });
 }
 
 function loadPrefs(prefs) {
@@ -453,7 +452,7 @@ function loadPrefs(prefs) {
 }
 
 function savePref(event) {
-  browser.storage.onChanged.removeListener(storageChangeListener);
+  chrome.storage.onChanged.removeListener(storageChangeListener);
 
   let prefs = {};
 
@@ -462,7 +461,7 @@ function savePref(event) {
   else if (event.target.type == "text") prefs[event.target.id] = event.target.value;
 
   storage.setPrefs(prefs)
-    .then(() => { browser.storage.onChanged.addListener(storageChangeListener); });
+    .then(() => { chrome.storage.onChanged.addListener(storageChangeListener); });
 }
 
 function storageChangeListener(changes) {

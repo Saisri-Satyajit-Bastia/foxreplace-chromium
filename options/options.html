@@ -21,7 +21,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>options.title</title>
+    <title>options_title</title>
     <link rel="stylesheet" href="../lib/bootstrap.css">
     <link rel="stylesheet" href="../lib/fontawesome-free-5.9.0-web/css/all.css">
     <link rel="stylesheet" href="options.css">
@@ -39,112 +39,101 @@
   <body>
 
     <div>
-      <h4 class="i18n">options.substitutionList</h4>
+      <h4 class="i18n">options_substitutionList</h4>
       <p>
         <button id="addGroup" class="btn btn-primary" data-toggle="modal" data-target="#groupEditorModal">
           <i class="fas fa-plus"></i>
-          <span class="i18n">options.add</span>
+          <span class="i18n">options_add</span>
         </button>
         <span class="btn-group" role="group">
           <button id="moveUpGroup" class="btn btn-secondary">
             <i class="fas fa-angle-up"></i>
-            <span class="i18n">options.moveUp</span>
+            <span class="i18n">options_moveUp</span>
           </button>
           <button id="moveDownGroup" class="btn btn-secondary">
             <i class="fas fa-angle-down"></i>
-            <span class="i18n">options.moveDown</span>
+            <span class="i18n">options_moveDown</span>
           </button>
         </span>
         <span class="btn-group" role="group">
           <button id="import" class="btn btn-secondary" data-toggle="modal" data-target="#importModal" data-from="file">
             <i class="fas fa-file-import"></i>
-            <span class="i18n">options.import</span>
+            <span class="i18n">options_import</span>
           </button>
           <button id="importFromUrl" class="btn btn-secondary" data-toggle="modal" data-target="#importModal" data-from="url">
             <i class="fas fa-cloud-download-alt"></i>
-            <span class="i18n">options.importFromUrl</span>
+            <span class="i18n">options_importFromUrl</span>
           </button>
           <button id="export" class="btn btn-secondary">
             <i class="fas fa-file-export"></i>
-            <span class="i18n">options.export</span>
+            <span class="i18n">options_export</span>
           </button>
         </span>
         <button id="resetColumns" class="btn btn-secondary">
           <i class="fas fa-undo"></i>
-          <span class="i18n">options.resetColumns</span>
+          <span class="i18n">options_resetColumns</span>
         </button>
         <button id="clearGroups" class="btn btn-danger" data-toggle="modal" data-target="#confirmClearGroupsModal">
           <i class="fas fa-trash"></i>
-          <span class="i18n">options.clear</span>
+          <span class="i18n">options_clear</span>
         </button>
       </p>
       <p id="listGrid" class="ag-theme-fresh"></p>
     </div>
 
     <div id="prefs">
-      <h4 class="i18n">options.subscription.header</h4>
+      <h4 class="i18n">options_subscription_header</h4>
       <div class="form-check">
         <input id="enableSubscription" type="checkbox" class="form-check-input"></input>
-        <label class="form-check-label i18n">options.subscription.enable</label>
+        <label class="form-check-label i18n">options_subscription_enable</label>
       </div>
       <div class="form-group row my-3">
         <div class="input-group col">
           <div class="input-group-prepend">
-            <span class="input-group-text i18n">options.subscription.url</span>
+            <span class="input-group-text i18n">options_subscription_url</span>
           </div>
           <input id="subscriptionUrl" type="text" class="form-control"></input>
         </div>
         <div class="input-group col-2">
           <div class="input-group-prepend">
-            <span class="input-group-text i18n">options.subscription.period</span>
+            <span class="input-group-text i18n">options_subscription_period</span>
           </div>
           <input id="subscriptionPeriod" type="number" value="1" min="1" class="form-control"></input>
         </div>
       </div>
       <p>
-        <label class="i18n">options.subscription.status</label>
+        <label class="i18n">options_subscription_status</label>
         <span id="status">Disabled</span>
       </p>
       <div id="subscriptionWarning" class="alert alert-warning d-none" role="alert">
         <h5 class="alert-heading">
           <i class="fas fa-exclamation-triangle"></i>
-          <span class="i18n">options.subscription.warning.header</span>
+          <span class="i18n">options_subscription_warning_header</span>
         </h5>
-        <p class="i18n">options.subscription.warning.content</p>
+        <p class="i18n">options_subscription_warning_content</p>
       </div>
-      <h4 class="i18n">options.otherSettings</h4>
+      <h4 class="i18n">options_otherSettings</h4>
       <div class="form-check">
         <input id="enableContextMenu" type="checkbox" class="form-check-input"></input>
-        <label class="form-check-label i18n">options.enableContextMenu</label>
+        <label class="form-check-label i18n">options_enableContextMenu</label>
       </div>
       <div class="form-check">
         <input id="autoReplaceOnLoad" type="checkbox" class="form-check-input"></input>
-        <label class="form-check-label i18n">options.autoReplaceOnLoad</label>
+        <label class="form-check-label i18n">options_autoReplaceOnLoad</label>
       </div>
       <div class="form-check">
         <input id="autoReplacePeriodically" type="checkbox" class="form-check-input">
-        <label class="form-check-label i18n">options.autoReplacePeriodically</label>
+        <label class="form-check-label i18n">options_autoReplacePeriodically</label>
         <input id="autoReplacePeriod" type="number" value="1" min="1" style="width:10ex;">
-        <span class="i18n">options.autoReplacePeriodUnits</span>
+        <span class="i18n">options_autoReplacePeriodUnits</span>
       </div>
       <div class="form-check">
         <input id="replaceUrls" type="checkbox" class="form-check-input"></input>
-        <label class="form-check-label i18n">options.replaceUrls</label>
+        <label class="form-check-label i18n">options_replaceUrls</label>
       </div>
       <div class="form-check">
         <input id="replaceScripts" type="checkbox" class="form-check-input"></input>
-        <label class="form-check-label i18n">options.replaceScripts</label>
-      </div>
-    </div>
-
-    <div id="importWarning" class="toast" role="alert">
-      <div class="toast-header">
-        <i class="fas fa-exclamation-triangle mr-1"></i>
-        <strong class="mr-auto i18n">warning</strong>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
-      </div>
-      <div class="toast-body">
-        <div class="alert alert-warning"></div>
+        <label class="form-check-label i18n">options_replaceScripts</label>
       </div>
     </div>
 
@@ -156,16 +145,16 @@
               <div class="form-inline mb-3">
                 <div class="form-check mr-3">
                   <input id="groupEnabled" type="checkbox" class="form-check-input"></input>
-                  <label class="form-check-label i18n">options.group.enabled</label>
+                  <label class="form-check-label i18n">options_group_enabled</label>
                 </div>
                 <div class="input-group mr-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text i18n">options.group.mode</span>
+                    <span class="input-group-text i18n">options_group_mode</span>
                   </div>
                   <select id="groupMode" class="custom-select">
-                    <option value="0" selected="" class="i18n">options.group.mode.autoAndManual</option>
-                    <option value="1" class="i18n">options.group.mode.auto</option>
-                    <option value="2" class="i18n">options.group.mode.manual</option>
+                    <option value="0" selected="" class="i18n">options_group_mode_autoAndManual</option>
+                    <option value="1" class="i18n">options_group_mode_auto</option>
+                    <option value="2" class="i18n">options_group_mode_manual</option>
                   </select>
                 </div>
                 <div class="input-group mr-3">
@@ -173,32 +162,32 @@
                     <span class="input-group-text i18n">html</span>
                   </div>
                   <select id="groupHtml" class="custom-select">
-                    <option value="0" selected="" class="i18n">html.none</option>
-                    <option value="1" class="i18n">html.output</option>
-                    <option value="2" class="i18n">html.inputOutput</option>
+                    <option value="0" selected="" class="i18n">html_none</option>
+                    <option value="1" class="i18n">html_output</option>
+                    <option value="2" class="i18n">html_inputOutput</option>
                   </select>
                 </div>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text i18n">options.group.name</span>
+                  <span class="input-group-text i18n">options_group_name</span>
                 </div>
                 <input id="groupName" type="text" class="form-control"></input>
               </div>
             </div>
             <ul class="nav nav-pills mb-3" role="tablist">
               <li class="nav-item">
-                <a id="urlsTab" class="nav-link active i18n" href="#urlsContent" role="tab" data-toggle="tab">options.group.urls</a>
+                <a id="urlsTab" class="nav-link active i18n" href="#urlsContent" role="tab" data-toggle="tab">options_group_urls</a>
               </li>
               <li class="nav-item">
-                <a id="substitutionsTab" class="nav-link i18n" href="#substitutionsContent" role="tab" data-toggle="tab">options.group.substitutions</a>
+                <a id="substitutionsTab" class="nav-link i18n" href="#substitutionsContent" role="tab" data-toggle="tab">options_group_substitutions</a>
               </li>
             </ul>
             <div class="tab-content">
               <div id="urlsContent" class="tab-pane show active" role="tabpanel">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text i18n">options.group.search</span>
+                    <span class="input-group-text i18n">options_group_search</span>
                   </div>
                   <input id="urlsSearchBar" type="search" class="form-control searchBar"></input>
                   <div class="input-group-append">
@@ -212,19 +201,15 @@
                   <div>
                     <button id="clearUrlsButton" class="btn btn-danger">
                       <i class="fas fa-trash"></i>
-                      <span class="i18n">options.clear</span>
+                      <span class="i18n">options_clear</span>
                     </button>
                   </div>
                 </div>
               </div>
               <div id="substitutionsContent" class="tab-pane" role="tabpanel">
-                <p>
-                  <i class="fas fa-exclamation-triangle"></i>
-                  <span class="i18n">options.output.function.warning</span>
-                </p>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text i18n">options.group.search</span>
+                    <span class="input-group-text i18n">options_group_search</span>
                   </div>
                   <input id="substitutionsSearchBar" type="search" class="form-control searchBar"></input>
                   <div class="input-group-append">
@@ -239,25 +224,25 @@
                     <div class="btn-group-vertical mb-3" role="group">
                       <button id="moveTopSubstitutionButton" class="btn btn-secondary">
                         <i class="fas fa-angle-double-up"></i>
-                        <span class="i18n">options.moveTop</span>
+                        <span class="i18n">options_moveTop</span>
                       </button>
                       <button id="moveUpSubstitutionButton" class="btn btn-secondary">
                         <i class="fas fa-angle-up"></i>
-                        <span class="i18n">options.moveUp</span>
+                        <span class="i18n">options_moveUp</span>
                       </button>
                       <button id="moveDownSubstitutionButton" class="btn btn-secondary">
                         <i class="fas fa-angle-down"></i>
-                        <span class="i18n">options.moveDown</span>
+                        <span class="i18n">options_moveDown</span>
                       </button>
                       <button id="moveBottomSubstitutionButton" class="btn btn-secondary">
                         <i class="fas fa-angle-double-down"></i>
-                        <span class="i18n">options.moveBottom</span>
+                        <span class="i18n">options_moveBottom</span>
                       </button>
                     </div>
                     <div>
                       <button id="clearSubstitutionsButton" class="btn btn-danger w-100">
                         <i class="fas fa-trash"></i>
-                        <span class="i18n">options.clear</span>
+                        <span class="i18n">options_clear</span>
                       </button>
                     </div>
                   </div>
@@ -266,9 +251,9 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button id="groupOk" class="btn btn-primary i18n" data-action="ok">options.ok</button>
-            <button id="groupCancel" class="btn btn-secondary i18n" data-action="cancel">options.cancel</button>
-            <button id="groupApply" class="btn btn-secondary i18n" data-action="apply">options.apply</button>
+            <button id="groupOk" class="btn btn-primary i18n" data-action="ok">options_ok</button>
+            <button id="groupCancel" class="btn btn-secondary i18n" data-action="cancel">options_cancel</button>
+            <button id="groupApply" class="btn btn-secondary i18n" data-action="apply">options_apply</button>
           </div>
         </div>
       </div>
@@ -285,13 +270,13 @@
               <input id="importFile" class="importFromFile form-control h-auto" type="file" accept=".json">
               <input id="importUrl" class="importFromUrl form-control" type="text">
             </p>
-            <div id="importError" class="alert alert-danger" role="alert"></div>
+            <div id="importError" class="alert alert-danger d-none" role="alert"></div>
           </div>
           <div class="modal-footer">
             <div class="spinner-border d-none" role="status"></div>
-            <button id="importAppend" class="btn btn-primary i18n" data-action="append">options.importAndAppend</button>
-            <button id="importOverwrite" class="btn btn-primary i18n" data-action="overwrite">options.importAndOverwrite</button>
-            <button class="btn btn-secondary i18n" data-dismiss="modal">options.cancel</button>
+            <button id="importAppend" class="btn btn-primary i18n" data-action="append">options_importAndAppend</button>
+            <button id="importOverwrite" class="btn btn-primary i18n" data-action="overwrite">options_importAndOverwrite</button>
+            <button class="btn btn-secondary i18n" data-dismiss="modal">options_cancel</button>
           </div>
         </div>
       </div>
@@ -300,12 +285,23 @@
     <div id="confirmClearGroupsModal" class="modal" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-body i18n">options.confirmClearGroups.content</div>
+          <div class="modal-body i18n">options_confirmClearGroups_content</div>
           <div class="modal-footer">
-            <button id="confirmClearGroupsButton" class="btn btn-danger i18n">options.confirmClearGroups.clear</button>
-            <button class="btn btn-secondary i18n" data-dismiss="modal">options.confirmClearGroups.cancel</button>
+            <button id="confirmClearGroupsButton" class="btn btn-danger i18n">options_confirmClearGroups_clear</button>
+            <button class="btn btn-secondary i18n" data-dismiss="modal">options_confirmClearGroups_cancel</button>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div id="importWarning" class="toast" role="alert">
+      <div class="toast-header">
+        <i class="fas fa-exclamation-triangle mr-1"></i>
+        <strong class="mr-auto i18n">warning</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+      </div>
+      <div class="toast-body">
+        <div class="alert alert-warning"></div>
       </div>
     </div>
 

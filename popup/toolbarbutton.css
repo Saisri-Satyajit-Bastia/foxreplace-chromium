@@ -14,22 +14,48 @@
  *
  *  ***** END LICENSE BLOCK ***** */
 
+.panel {
+  width: 300px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.panel-section-list {
+  padding: 0;
+}
+
 .panel-list-item {
-  padding-left: 32px;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+}
+
+.panel-list-item:hover {
+  background-color: #f5f5f5;
+}
+
+.panel-list-item:last-child {
+  border-bottom: none;
+}
+
+.panel-list-item > .icon {
+  margin-right: 8px;
+  width: 16px;
 }
 
 .panel-list-item > .text {
+  flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.panel-list-item > .icon {
-  position: absolute;
-  left: 16px;
-}
-
 .panel-list-item > .text-shortcut {
-  font: unset;
-  margin-left: 16px;
+  color: #888;
+  font-size: 11px;
+  margin-left: auto;
 }

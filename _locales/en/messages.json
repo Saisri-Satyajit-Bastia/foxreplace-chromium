@@ -1,7 +1,7 @@
 {
 
   "extensionDescription": {
-    "message": "Lets you replace text in web pages. You can define a substitution list and apply it automatically or at your own discretion, or make individual substitutions. You can use this as a filter, or just for fun :)"
+    "message": "ALPHA VERSION - Chromium port of FoxReplace by Marc Ruiz Altisent. May be unstable or incomplete. Original Firefox extension: https://github.com/Woundorf/foxreplace | Lets you replace text in web pages. You can define a substitution list and apply it automatically or at your own discretion, or make individual substitutions."
   },
 
   "generalSubstitutions": {
@@ -54,191 +54,191 @@
     }
   },
 
-  "inputType.text": {
+  "inputType_text": {
     "message": "Text"
   },
 
-  "inputType.wholeWords": {
+  "inputType_wholeWords": {
     "message": "Whole words"
   },
 
-  "inputType.regExp": {
+  "inputType_regExp": {
     "message": "Regular expression"
   },
 
-  "outputType.text": {
+  "outputType_text": {
     "message": "Text"
   },
 
-  "outputType.function": {
+  "outputType_function": {
     "message": "Function"
   },
 
-  "options.title": {
+  "options_title": {
     "message": "FoxReplace options"
   },
 
-  "options.substitutionList": {
+  "options_substitutionList": {
     "message": "Substitution list"
   },
 
-  "options.add": {
+  "options_add": {
     "message": "Add"
   },
 
-  "options.clear": {
+  "options_clear": {
     "message": "Clear"
   },
 
-  "options.moveTop": {
+  "options_moveTop": {
     "message": "Move to top"
   },
 
-  "options.moveUp": {
+  "options_moveUp": {
     "message": "Move up"
   },
 
-  "options.moveDown": {
+  "options_moveDown": {
     "message": "Move down"
   },
 
-  "options.moveBottom": {
+  "options_moveBottom": {
     "message": "Move to bottom"
   },
 
-  "options.import": {
+  "options_import": {
     "message": "Import"
   },
 
-  "options.importFromUrl": {
+  "options_importFromUrl": {
     "message": "Import from URL"
   },
 
-  "options.export": {
+  "options_export": {
     "message": "Export"
   },
 
-  "options.resetColumns": {
+  "options_resetColumns": {
     "message": "Reset columns"
   },
 
-  "options.subscription.header": {
+  "options_subscription_header": {
     "message": "Periodically update from URL"
   },
 
-  "options.subscription.enable": {
+  "options_subscription_enable": {
     "message": "Enable"
   },
 
-  "options.subscription.url": {
+  "options_subscription_url": {
     "message": "URL"
   },
 
-  "options.subscription.period": {
+  "options_subscription_period": {
     "message": "Period (minutes)"
   },
 
-  "options.subscription.status": {
+  "options_subscription_status": {
     "message": "Status:"
   },
 
-  "options.output.function.warning": {
+  "options_output_function_warning": {
     "message": "Warning: using \"replace with function\" setting allows for arbitrary JavaScript execution"
   },
 
-  "options.subscription.warning.header": {
+  "options_subscription_warning_header": {
     "message": "Warning: use only trusted sources"
   },
 
-  "options.subscription.warning.content": {
+  "options_subscription_warning_content": {
     "message": "Updating the substitution list from a remote server has potential security and privacy issues. A malicious server could execute code on your browser and use it to steal your information or perform another kind of attack. Thus you should only use a remote URL from a server you trust."
   },
 
-  "options.otherSettings": {
+  "options_otherSettings": {
     "message": "Other settings"
   },
 
-  "options.enableContextMenu": {
+  "options_enableContextMenu": {
     "message": "Enable context menu"
   },
 
-  "options.autoReplaceOnLoad": {
+  "options_autoReplaceOnLoad": {
     "message": "Apply automatic substitutions on page load"
   },
 
-  "options.autoReplacePeriodically": {
+  "options_autoReplacePeriodically": {
     "message": "Apply automatic substitutions every"
   },
 
-  "options.autoReplacePeriodUnits": {
+  "options_autoReplacePeriodUnits": {
     "message": "seconds"
   },
 
-  "options.replaceUrls": {
+  "options_replaceUrls": {
     "message": "Replace URLs (links and image sources) (Warning: this may change page behaviour!)"
   },
 
-  "options.replaceScripts": {
+  "options_replaceScripts": {
     "message": "Replace scripts (Warning: this may change page behaviour!) (experimental)"
   },
 
-  "options.confirmClearGroups.content": {
+  "options_confirmClearGroups_content": {
     "message": "This will clear the whole list. Are you sure?"
   },
 
-  "options.confirmClearGroups.clear": {
+  "options_confirmClearGroups_clear": {
     "message": "Clear"
   },
 
-  "options.confirmClearGroups.cancel": {
+  "options_confirmClearGroups_cancel": {
     "message": "Cancel"
   },
 
-  "options.importAndAppend": {
+  "options_importAndAppend": {
     "message": "Import and append"
   },
 
-  "options.importAndOverwrite": {
+  "options_importAndOverwrite": {
     "message": "Import and overwrite"
   },
 
-  "options.ok": {
+  "options_ok": {
     "message": "OK"
   },
 
-  "options.cancel": {
+  "options_cancel": {
     "message": "Cancel"
   },
 
-  "options.apply": {
+  "options_apply": {
     "message": "Apply"
   },
 
-  "options.group.enabled": {
+  "options_group_enabled": {
     "message": "Enable"
   },
 
-  "options.group.mode": {
+  "options_group_mode": {
     "message": "Mode"
   },
 
-  "options.group.mode.autoAndManual": {
+  "options_group_mode_autoAndManual": {
     "message": "Auto & manual"
   },
 
-  "options.group.mode.auto": {
+  "options_group_mode_auto": {
     "message": "Auto"
   },
 
-  "options.group.mode.manual": {
+  "options_group_mode_manual": {
     "message": "Manual"
   },
 
-  "options.group.name": {
+  "options_group_name": {
     "message": "Name"
   },
 
-  "options.group.search": {
+  "options_group_search": {
     "message": "Search"
   },
 
@@ -246,59 +246,59 @@
     "message": "HTML"
   },
 
-  "html.none": {
+  "html_none": {
     "message": "No"
   },
 
-  "html.output": {
+  "html_output": {
     "message": "Output only"
   },
 
-  "html.inputOutput": {
+  "html_inputOutput": {
     "message": "Input & output"
   },
 
-  "options.group.url": {
+  "options_group_url": {
     "message": "URL"
   },
 
-  "options.group.urls": {
+  "options_group_urls": {
     "message": "URLs"
   },
 
-  "options.group.substitutions": {
+  "options_group_substitutions": {
     "message": "Substitutions"
   },
 
-  "list.urlHint": {
+  "list_urlHint": {
     "message": "Type URL..."
   },
 
-  "list.inputHeader": {
+  "list_inputHeader": {
     "message": "Replace"
   },
 
-  "list.inputHint": {
+  "list_inputHint": {
     "message": "Type input... (required)"
   },
 
-  "list.inputTypeHeader": {
+  "list_inputTypeHeader": {
     "message": "Type"
   },
 
-  "list.outputHeader": {
+  "list_outputHeader": {
     "message": "With"
   },
 
-  "list.outputTypeHeader": {
+  "list_outputTypeHeader": {
     "message": "Output type"
   },
 
-  "list.outputHint": {
+  "list_outputHint": {
     "message": "Type output..."
   },
 
-  "list.caseSensitiveHeader": {
+  "list_caseSensitiveHeader": {
     "message": "Match case"
   },
 
@@ -310,19 +310,19 @@
     "message": "No"
   },
 
-  "options.warning.selectFile": {
+  "options_warning_selectFile": {
     "message": "Select a file"
   },
 
-  "options.warning.enterUrl": {
+  "options_warning_enterUrl": {
     "message": "Enter a URL"
   },
 
-  "options.warning.atLeastOneSubstitutionAndNoErrors": {
+  "options_warning_atLeastOneSubstitutionAndNoErrors": {
     "message": "You must add at least one substitution and correct all errors"
   },
 
-  "options.error.invalidJson": {
+  "options_error_invalidJson": {
     "message": "Invalid JSON at $url$",
     "placeholders": {
       "url": {
@@ -331,55 +331,55 @@
     }
   },
 
-  "options.error.cantConnect": {
+  "options_error_cantConnect": {
     "message": "Can't connect to server"
   },
 
-  "menu.replace": {
+  "menu_replace": {
     "message": "Replace..."
   },
 
-  "menu.replaceWithList": {
+  "menu_replaceWithList": {
     "message": "Apply manual substitutions"
   },
 
-  "menu.autoReplaceOnLoad": {
+  "menu_autoReplaceOnLoad": {
     "message": "Apply automatic substitutions on page load"
   },
 
-  "menu.options": {
+  "menu_options": {
     "message": "Options..."
   },
 
-  "menu.help": {
+  "menu_help": {
     "message": "Help"
   },
 
-  "toolbar.input": {
+  "toolbar_input": {
     "message": "Replace"
   },
 
-  "toolbar.output": {
+  "toolbar_output": {
     "message": "With"
   },
 
-  "toolbar.caseSensitive": {
+  "toolbar_caseSensitive": {
     "message": "Match case"
   },
 
-  "toolbar.replace": {
+  "toolbar_replace": {
     "message": "Replace"
   },
 
-  "subscriptionStatus.disabled": {
+  "subscriptionStatus_disabled": {
     "message": "Disabled"
   },
 
-  "subscriptionStatus.updating": {
+  "subscriptionStatus_updating": {
     "message": "Updating..."
   },
 
-  "subscriptionStatus.lastUpdate": {
+  "subscriptionStatus_lastUpdate": {
     "message": "Last update: $dateTime$",
     "placeholders": {
       "dateTime": {
@@ -388,15 +388,15 @@
     }
   },
 
-  "keys.cmd": {
+  "keys_cmd": {
     "message": "Cmd"
   },
 
-  "keys.ctrl": {
+  "keys_ctrl": {
     "message": "Ctrl"
   },
 
-  "keys.shift": {
+  "keys_shift": {
     "message": "Shift"
   }
 
